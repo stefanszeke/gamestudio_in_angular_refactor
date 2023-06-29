@@ -1,7 +1,8 @@
 <app-nav></app-nav>
 
 <div *ngIf="loading" class="loading-screen">
-    Loading {{loadingModuleName}}...
+    <i class="material-icons loading-icon">replay_circle_filled</i>
+    <h2>Loading {{loadingModuleName}}...</h2> 
 </div>
 
 <div *ngIf="!loading">
