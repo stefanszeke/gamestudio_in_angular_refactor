@@ -1,0 +1,87 @@
+@use "src/styles/variables" as v;
+
+.game {
+  display: grid;
+  grid-auto-flow: row;
+  grid-gap: 20px;
+  justify-items: center;
+
+  margin-top: 80px;
+}
+
+.box {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: center;
+  grid-gap: 30px;
+  margin-top: 10px;
+  padding: 15px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: rgb(20, 20, 20);
+  box-shadow: 0px 0px 5px 3px rgb(25, 25, 25);
+  border: 1px solid rgb(49, 49, 49);
+  color: v.$text-main;
+  border-radius: 6px;
+  user-select: none;
+  margin: auto;
+
+  min-width: 520px;
+  justify-content: space-between;
+
+  &-title {
+    text-align: center;
+    justify-content: center;
+  }
+
+  &-item {
+    display: grid;
+    grid-template-columns: 1fr 25px 23px 23px;
+    gap: 4px;
+    align-items: center;
+  }
+
+  &-numb {
+    text-align: right;
+    color: white;
+    background-color: rgb(40, 39, 39);
+    border: 1px solid rgb(86, 56, 22);
+    border-radius: 4px;
+    padding: 2px;
+  }
+}
+
+
+.status-item {
+  display: grid;
+  grid-template-columns: 1fr 80px;
+  gap: 4px;
+  align-items: center;
+}
+
+.btn-field {
+  background-color: rgb(48, 48, 48);
+  border: 1px solid rgb(96, 96, 96);
+  border-radius: 4px;
+  padding: 4px;
+  min-width: 25px;
+  width: fit-content;
+  color: v.$text-main;
+  transition: 90ms;
+
+  &:hover {
+    filter: brightness(1.2);
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 728px) {
+  .box {
+    grid-auto-flow: row;
+    justify-content: center;
+    gap: 10px;
+    justify-self: stretch;
+    min-width: auto;
+    width: 90%;
+  }
+}

@@ -1,0 +1,15 @@
+<div class="main-nav">
+    <div class="nav-up">
+        <a routerLink="/" class="title"><i class="material-icons">home</i>Gamestudio</a>
+        <button class="menu-toggle" *ngIf="menuHidden" (click)="toggleMenu()"><i class="material-icons">menu_open</i></button>
+        <button class="menu-toggle" *ngIf="!menuHidden" (click)="toggleMenu()"><i class="material-icons">close</i></button>
+    </div>
+    <div [class.hidden]="menuHidden" class="nav-down">
+        <nav class="nav-down-nav"> 
+            <a routerLink="/minesweeper" routerLinkActive="active" (click)="closeMenu()">minesweeper</a>
+            <a routerLink="/blocks" routerLinkActive="active" (click)="closeMenu()">blocks</a>
+            <a routerLink="/game1024" routerLinkActive="active" (click)="closeMenu()">game1024</a>
+        </nav>
+    </div>
+  </div>
+  <div class="menu-overlay" [class.hidden]="menuHidden" (click)="closeMenu()"></div>

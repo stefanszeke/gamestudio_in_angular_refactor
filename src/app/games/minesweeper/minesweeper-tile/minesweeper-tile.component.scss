@@ -1,0 +1,86 @@
+.tile {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-bottom: 4px solid #3d3d3d;
+  border-left: 3px solid rgba(137, 47, 92, 0.5);
+  border-radius: 8px;
+  background-color: #727272;
+  box-shadow: 5px 5px 3px 4px #0000006f;
+  display: grid;
+  place-items: center;
+  transition: 80ms;
+  margin: 1px;
+  color: white;
+  font-weight: 700;
+  user-select: none;
+  z-index: 2;
+
+  &-hidden:hover {
+    filter: brightness(2);
+    transform: scale(1.15);
+    cursor: pointer;
+  }
+
+  &-0 {
+    color: #434242;
+    background-color: #262626;
+    border: none;
+    box-shadow: none;
+    z-index: 0;
+    opacity: 0.5;
+  }
+
+  &-hidden {
+    box-shadow: none;
+  }
+
+  &-1 {
+    background-color: #6665cf;
+  }
+
+  &-2 {
+    background-color: #42ab3e;
+  }
+
+  &-3 {
+    background-color: #ff3c00;
+  }
+
+  &-4 {
+    background-color: #234cac;
+  }
+
+  &-5 {
+    background-color: #d24646;
+  }
+
+  &-6 {
+    background-color: #b960f9;
+  }
+
+  &-7 {
+    background-color: #cdcdcd;
+  }
+
+  &-8 {
+    background-color: #6a6a6a;
+  }
+
+  &-flag {
+    background-color: orange;
+  }
+
+  &-mine {
+    background-color: #b01717;
+    transform: scale(1.4);
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .tile {
+    width: 25px;
+    height: 25px;
+  }
+}

@@ -1,0 +1,9 @@
+<app-nav></app-nav>
+
+<div *ngIf="loading" class="loading-screen">
+    Loading {{loadingModuleName}}...
+</div>
+
+<div *ngIf="!loading">
+    <router-outlet></router-outlet>
+</div>

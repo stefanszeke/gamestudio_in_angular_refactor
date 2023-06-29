@@ -1,0 +1,56 @@
+<div class="game">
+
+    <div class="box box-title">
+        <h2>Game1024</h2>
+    </div>
+
+    <div class="box">
+        <p>moves: {{moveCount}}</p>
+        <h2>{{getBiggestNumber()}}/1024</h2>
+        <button class="btn-field" (click)="reset()">Reset</button>
+    </div>
+
+    <div class="gameBoard" [ngStyle]="{'grid-template-columns': 'repeat('+size+', 1fr)'}">
+        <div *ngFor="let row of gameField[0]; let j = index">
+            <div *ngFor="let tile of gameField; let i = index">
+                <app-game1024-tile [value]="tile[j].value" [hidden]="setHidden(i,j)"
+                    (click)="debugClick($event, i, j)"></app-game1024-tile>
+            </div>
+        </div>
+        <div *ngIf="gameStatus === 'lost'" class="overlay lose-screen">YOU lOST</div>
+        <div *ngIf="gameStatus === 'won'" class="overlay win-screen">YOU WON <p>in</p>
+            <p>{{moveCount}}</p>
+            <p>moves</p>
+        </div>
+        <div *ngIf="gameStatus === 'reset'" class="overlay reset-screen">Resetting</div>
+    </div>
+
+    <div class="controls">
+        <div class="control-btn btn-up" [ngClass]="{'btn-pressed': isUpPressed}" (click)="dispatchKeyboardEvent('w')">
+            <i class="material-icons">arrow_drop_up</i>
+        </div>
+
+        <div class="control-btn btn-left" [ngClass]="{'btn-pressed': isLeftPressed}"
+            (click)="dispatchKeyboardEvent('a')">
+            <i class="material-icons">arrow_left</i>
+        </div>
+
+        <div class="control-btn btn-empty"><i class="fa-solid fa-gamepad"></i></div>
+
+        <div class="control-btn btn-right" [ngClass]="{'btn-pressed': isRightPressed}"
+            (click)="dispatchKeyboardEvent('d')">
+            <i class="material-icons">arrow_right</i>
+        </div>
+
+        <div class="control-btn btn-down" [ngClass]="{'btn-pressed': isDownPressed}"
+            (click)="dispatchKeyboardEvent('s')">
+            <i class="material-icons">arrow_drop_down</i>
+        </div>
+    </div>
+
+    <div class="box" >
+        <h4 style="color: white;">use [WASD] to move or the arrows</h4>
+        <p>shift click to add value (use for debugging only !)</p>
+    </div>
+
+</div>

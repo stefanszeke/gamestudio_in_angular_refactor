@@ -1,0 +1,51 @@
+<div class="game">
+
+    <div class="box box-title">
+        <h2>Minesweeper</h2>
+    </div>
+    
+    <div class="box">
+        <div class="box-item">
+            <span class="box-text">Size: </span>
+            <span class="box-numb">{{sizeControl}}</span>
+            <button class="btn-field" (click)="changeSize(-1)">-</button>
+            <button class="btn-field" (click)="changeSize(1)">+</button>
+        </div>
+        <div class="box-item">
+            <span class="box-text">Mines: </span>
+            <span class="box-numb">{{mineControl}}</span>
+            <button class="btn-field" (click)="changeMineCount(-1)">-</button>
+            <button class="btn-field" (click)="changeMineCount(1)">+</button>
+        </div>
+            <button class="btn-field" (click)="setNewBoard()">set</button>
+    </div>
+  
+    <div class="box">
+        <div class="status-item">
+            <span class="box-text">✅Status: </span>
+            <span class="box-numb"> {{countTilesByStatus('visible')}} / {{size*size-mineCount}} </span>
+        </div>
+        <div class="timer">
+            <button (click)="showScore()">score</button>
+            {{timerData.display}}
+        </div>
+        <div class="status-item">
+            <span class="box-text">🚩Flags: </span>
+            <span class="box-numb"> {{countTilesByStatus('flagged')}} / {{mineCount}} </span>
+        </div>
+    </div>
+  
+    <div class="board" [ngStyle]="{'grid-template-columns': 'repeat('+size+', 1fr)'}">
+        <div *ngFor="let row of board; let i = index">
+            <div *ngFor="let tile of row; let j = index">
+                <app-minesweeper-tile [value]="tile.value" [status]="tile.status" (click)="openTile(i,j)" (contextmenu)="placeFlag($event, i, j)"></app-minesweeper-tile>
+
+            </div>
+        </div>
+        <div *ngIf="status === 'lost'" class="overlay lose-screen">YOU lOST</div>
+        <div *ngIf="status === 'won'" class="overlay win-screen">YOU WON <p>score:</p> <h3>{{this.score}}</h3> </div>
+        <div *ngIf="status === 'reset'" class="overlay reset-screen">Resetting</div>
+    </div>
+  
+    <button class="btn-field" (click)="resetGame()" > reset</button>
+  </div>

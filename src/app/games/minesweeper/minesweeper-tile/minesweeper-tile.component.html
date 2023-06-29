@@ -1,0 +1,4 @@
+<div class="tile" [ngClass]="getStyle()">
+    <span *ngIf="status === 'visible'">{{value}}</span>
+    <span *ngIf="status === 'flagged'">🚩</span>
+</div>

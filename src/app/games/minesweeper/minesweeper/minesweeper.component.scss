@@ -1,0 +1,13 @@
+@use "src/styles/statusbox";
+
+.board {
+  position: relative;
+  display: grid;
+  width: fit-content;
+  box-shadow: 0px 0px 8px 3px rgb(25, 25, 25);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+
+
