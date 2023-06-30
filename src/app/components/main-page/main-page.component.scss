@@ -1,0 +1,60 @@
+.carousel-container {
+  position: relative;
+  // border: 2px solid red;
+  width: 500px;
+  height: 200px;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+.carousel-menu {
+  position: absolute;
+  top: 50%;
+  // transform: translate(-50%,-50%);
+  transform: translateY(-50%);
+  color: white;
+  gap: 20px;
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  margin: auto;
+  width: 500px;
+
+  transition: all 0.5s ease-in-out;
+
+  &-item {
+    display: grid;
+    place-items: center;
+    height: 200px;
+    width: 110px;
+    // border: 1px solid green;
+    background-color: rgb(197, 192, 220);
+    user-select: none;
+    transition: 80ms;
+    cursor: pointer;
+
+    &:hover {
+      background-color: red;
+      transform: scale(1.1);
+    }
+  }
+}
+
+.control-btn {
+position: absolute;
+  height: 100%;
+  width: 50px;
+  border: none;
+  opacity: 0.2;
+  cursor: pointer;
+
+  &:hover {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.control-right {
+  right: 0;
+}

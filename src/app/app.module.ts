@@ -10,6 +10,7 @@ import { BlocksComponent } from './games/blocks/blocks/blocks.component';
 import { BlocksTileComponent } from './games/blocks/blocks-tile/blocks-tile.component';
 import { Game1024Component } from './games/game1024/game1024/game1024.component';
 import { Game1024TileComponent } from './games/game1024/game1024-tile/game1024-tile.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { Game1024TileComponent } from './games/game1024/game1024-tile/game1024-t
     BlocksComponent,
     BlocksTileComponent,
     Game1024Component,
-    Game1024TileComponent
+    Game1024TileComponent,
+    MainPageComponent
   ],
   imports: [
     BrowserModule,

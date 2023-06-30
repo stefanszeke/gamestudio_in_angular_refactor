@@ -1,0 +1,39 @@
+<p>main-page works!</p>
+<p>main-page works!</p>
+<p>main-page works!</p>
+<p>main-page works!</p>
+<p>main-page works!</p>
+<p>main-page works!</p>
+<p>main-page works!</p>
+<p>main-page works!</p>
+<nav class="nav-down-nav">
+    <a routerLink="/minesweeper" routerLinkActive="active">minesweeper</a>
+    <a routerLink="/blocks" routerLinkActive="active">blocks</a>
+    <a routerLink="/game1024" routerLinkActive="active">game1024</a>
+
+    <div class="carousel-container">
+        <div class="carousel-menu" [ngStyle]="{'left.px': leftPosition, 'transition': transition}">
+            <div class="carousel-menu-item" *ngFor="let item of menuCurrent">
+                {{item}}
+            </div>
+        </div>
+
+
+        <button class="control-btn control-left" (click)="moveLeft()" [disabled]="isTransitioning">◄</button>
+        <button class="control-btn control-right" (click)="moveRight()" [disabled]="isTransitioning">►</button>
+
+    </div>
+
+
+    <button (click)="incrementMenuPosition()">-</button>
+    <button (click)="decrementMenuPosition()">+</button>
+
+    <button (click)="moveLeft()" [disabled]="isTransitioning">left</button>
+    <button (click)="moveRight()" [disabled]="isTransitioning">right</button>
+
+
+
+</nav>
+<p>main-page works!</p>
+<p>main-page works!</p>
+<p>main-page works!</p>
