@@ -27,6 +27,11 @@ const routes: Routes = [
     path: 'game1024',
     loadChildren: () => loadWithDelay('game1024', 'Game1024Module', DELAY)
   },
+  {
+    path: 'tetris',
+    loadChildren: () => import('./games/tetris/tetris.module').then(m => m.TetrisModule)
+    // loadChildren: () => loadWithDelay('tetris', 'TetrisModule', DELAY)
+  },
 ];
 
 

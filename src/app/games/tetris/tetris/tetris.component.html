@@ -1,0 +1,26 @@
+<div class="main-wrapper">
+    adas
+
+    <div class="controls">
+        
+        <button (click)="move('up')" >up</button>
+
+        <div>
+            <button (click)="move('left')" >left</button>
+            <button (click)="move('right')" >right</button>
+        </div>
+        
+        <button (click)="move('down')" >down</button>
+    </div>
+
+    <div class="tetris-board">
+        <div *ngFor="let row of tetrisField" class="row"> 
+            <div *ngFor="let cell of row" class="cell" [ngClass]="getClass(cell)">
+                {{cell}}
+    
+            </div>
+        </div>
+    </div>
+
+</div>
+
