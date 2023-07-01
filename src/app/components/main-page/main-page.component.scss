@@ -1,8 +1,8 @@
 .carousel-container {
   position: relative;
   // border: 2px solid red;
-  width: 500px;
-  height: 200px;
+  width: 720px;
+  height: 400px;
   margin: auto;
   overflow: hidden;
   border-radius: 14px;
@@ -11,7 +11,6 @@
 .carousel-menu {
   position: absolute;
   top: 50%;
-  // transform: translate(-50%,-50%);
   transform: translateY(-50%);
   color: white;
   gap: 20px;
@@ -19,42 +18,94 @@
   grid-auto-flow: column;
   justify-content: center;
   margin: auto;
-  width: 500px;
+  width: 720px;
 
   transition: all 0.5s ease-in-out;
 
   &-item {
     display: grid;
     place-items: center;
-    height: 200px;
-    width: 110px;
+    height: 370px;
+    width: 220px;
     // border: 1px solid green;
     background-color: rgb(197, 192, 220);
     user-select: none;
     transition: 80ms;
+    opacity: 0.6;
+    border-radius: 4px;
     cursor: pointer;
 
+    &-main {
+      font-size: 2rem;
+      transform: scale(1.05);
+      opacity: 1;
+    }
+
     &:hover {
-      background-color: red;
-      transform: scale(1.1);
+      filter: brightness(1.1);
+      opacity: 1;
     }
   }
 }
 
 .control-btn {
-position: absolute;
-  height: 100%;
+  position: absolute;
+  height: 50px;
   width: 50px;
+  top: 50%;
+  transform: translateY(-50%);
   border: none;
   opacity: 0.2;
   cursor: pointer;
+  transition: 80ms;
+  border-radius: 50%;
+  margin: auto 20px;
 
   &:hover {
     opacity: 1;
-    transform: scale(1.1);
+    height: 54px;
+    width: 54px;
   }
 }
 
 .control-right {
   right: 0;
 }
+
+.carousel-quick {
+  position: absolute;
+  display: grid;
+  width: 100%;
+  justify-content: center;
+  grid-auto-flow: column;
+  gap: 6px;
+  bottom: 20px;
+  user-select: none;
+}
+
+.carousel-quick-btn {
+  width: 10px;
+  height: 10px;
+  background-color: white;
+  border-radius: 50%;
+  user-select: none;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.8);
+    background-color: hot;
+  }
+}
+
+@media screen and (max-width: 760px) {
+  .carousel-container {
+    width: 320px;
+  }
+
+  .carousel-menu {
+    width: 320px;
+    &-item {
+      width: 300px;
+    }
+  }
+}
+  

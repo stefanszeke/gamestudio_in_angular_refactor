@@ -1,39 +1,23 @@
-<p>main-page works!</p>
-<p>main-page works!</p>
-<p>main-page works!</p>
-<p>main-page works!</p>
-<p>main-page works!</p>
-<p>main-page works!</p>
-<p>main-page works!</p>
-<p>main-page works!</p>
-<nav class="nav-down-nav">
-    <a routerLink="/minesweeper" routerLinkActive="active">minesweeper</a>
-    <a routerLink="/blocks" routerLinkActive="active">blocks</a>
-    <a routerLink="/game1024" routerLinkActive="active">game1024</a>
+<div class="main-wrapper">
 
-    <div class="carousel-container">
-        <div class="carousel-menu" [ngStyle]="{'left.px': leftPosition, 'transition': transition}">
-            <div class="carousel-menu-item" *ngFor="let item of menuCurrent">
-                {{item}}
+    <nav class="nav-down-nav">
+        <div class="carousel-container">
+            <div class="carousel-menu" [ngStyle]="{'left.px': leftPosition, 'transition': transition}">
+                <div routerLink="/{{item}}" class="carousel-menu-item" *ngFor="let item of menuCurrent; let i = index" [ngClass]="{'carousel-menu-item-main': i === getMiddleIndex()}">
+                    <p>{{item}}</p>
+                </div>
             </div>
+
+            <div class="carousel-quick">
+                <div class="carousel-quick-btn" *ngFor="let item of menuItems; let i = index" (click)="setMenuPosition(i)">
+
+                </div>
+            </div>
+
+
+            <button class="control-btn control-left" (click)="moveRight()" [disabled]="isTransitioning">◄</button>
+            <button class="control-btn control-right" (click)="moveLeft()" [disabled]="isTransitioning">►</button>
         </div>
-
-
-        <button class="control-btn control-left" (click)="moveLeft()" [disabled]="isTransitioning">◄</button>
-        <button class="control-btn control-right" (click)="moveRight()" [disabled]="isTransitioning">►</button>
-
-    </div>
-
-
-    <button (click)="incrementMenuPosition()">-</button>
-    <button (click)="decrementMenuPosition()">+</button>
-
-    <button (click)="moveLeft()" [disabled]="isTransitioning">left</button>
-    <button (click)="moveRight()" [disabled]="isTransitioning">right</button>
-
-
-
-</nav>
-<p>main-page works!</p>
-<p>main-page works!</p>
-<p>main-page works!</p>
+    </nav>
+    
+</div>

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { MainPageComponent } from './components/main-page/main-page.component';
 
-const DELAY: number = 1500;
+const DELAY: number = 500;
 
 const routes: Routes = [
   {

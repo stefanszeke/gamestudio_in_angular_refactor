@@ -6,15 +6,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./main-page.component.scss']
 })
 export class MainPageComponent {
+MathFloor(arg0: number) {
+throw new Error('Method not implemented.');
+}
 
-  menuItems: number[] = [1,2,3,4,5,6,7,8,9];
+  menuItems: string[] = ["minesweeper", "blocks", "game1024", "tetris", "snake"];
   menuPosition: number = 0;
-  menuCurrent: number[] = [];
+  menuCurrent: string[] = [];
   menuSize: number = 5;
 
   leftPosition: number = 0;
   transition: string = "left 0.5s ease-in";
-  transitionTime: number = 280;
+  transitionTime: number = 180;
   isTransitioning: boolean = false;
 
   ngOnInit(): void {
@@ -96,6 +99,15 @@ export class MainPageComponent {
     }, this.transitionTime)
 
     this.transition = `left ${this.transitionTime}ms ease-in-out`;
+  }
+
+  setMenuPosition(i: number): void {
+    this.menuPosition = i;
+    this.generateCurrentMenu();
+  }
+
+  getMiddleIndex(): number {
+    return Math.floor(this.menuSize/2);
   }
 
 }
