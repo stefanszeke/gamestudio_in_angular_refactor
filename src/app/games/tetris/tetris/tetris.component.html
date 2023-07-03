@@ -2,25 +2,40 @@
     adas
 
     <div class="controls">
-        
-        <button (click)="move('up')" >up</button>
+
+        <button (click)="rotateBlock()">up</button>
 
         <div>
-            <button (click)="move('left')" >left</button>
-            <button (click)="move('right')" >right</button>
+            <button (click)="move('left')">left</button>
+            <button (click)="move('right')">right</button>
         </div>
-        
-        <button (click)="move('down')" >down</button>
+
+        <button (click)="move('down')">down</button>
     </div>
 
+    <button (click)="checkCompleteRowsAndDelete()">check rows</button>
+
+    <div>
+        <button (click)="pauseGame()">pause</button>
+        <button (click)="resumeGame()">resume</button>
+        <button (click)="restartGame()">restart</button>
+
+    </div>
+
+    <h1>{{score}}</h1>
+    <div style="min-height: 35px;">
+        <div *ngIf="gameOver"><h2>Game Over</h2></div>
+    </div>
+
+
+
     <div class="tetris-board">
-        <div *ngFor="let row of tetrisField" class="row"> 
+        <div *ngFor="let row of tetrisField" class="row">
             <div *ngFor="let cell of row" class="cell" [ngClass]="getClass(cell)">
-                {{cell}}
-    
+
+
             </div>
         </div>
     </div>
 
 </div>
-
