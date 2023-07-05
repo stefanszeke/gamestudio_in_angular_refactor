@@ -12,6 +12,7 @@ import { Game1024Component } from './games/game1024/game1024/game1024.component'
 import { Game1024TileComponent } from './games/game1024/game1024-tile/game1024-tile.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { TetrisComponent } from './games/tetris/tetris/tetris.component';
+import { Tetris2GameComponent } from './games/tetris2/tetris2-game/tetris2-game.component';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { TetrisComponent } from './games/tetris/tetris/tetris.component';
     Game1024Component,
     Game1024TileComponent,
     MainPageComponent,
-    TetrisComponent
+    TetrisComponent,
+    Tetris2GameComponent
   ],
   imports: [
     BrowserModule,

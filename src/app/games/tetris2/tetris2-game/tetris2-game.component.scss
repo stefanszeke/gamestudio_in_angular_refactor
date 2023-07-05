@@ -1,0 +1,41 @@
+.tetris-container {
+  display: flex;
+  flex-direction: column;
+  user-select: none;
+}
+
+.tetris-row {
+  display: flex;
+}
+
+.tetris-cell {
+  width: 30px;
+  height: 30px;
+  border: 1px solid rgb(85, 85, 85);
+}
+.cell-1 {
+  background-color: #ef862a;
+}
+.cell-2 {
+  background-color: #488ef0;
+}
+.cell-3 {
+  background-color: #ff423e;
+}
+.cell-4 {
+  background-color: #f8ff37;
+}
+.cell-5 {
+  background-color: #d42d91;
+}
+.cell-6 {
+  background-color: #c92cfd;
+}
+.cell-7 {
+  background-color: #40c292;
+}
+
+.test-btns button {
+  font-size: 2rem;
+  font-family: "Courier New", Courier, monospace;
+}
