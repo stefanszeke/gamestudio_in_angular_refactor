@@ -2,7 +2,7 @@ import { TETROMINOS_DATA, shapeName } from "./TetrominosShapes";
 
 export class Tetromino {
     shape: number[][];
-    name: string;
+    name: shapeName;
     IRotated: boolean = false;
 
     constructor(name: shapeName) {
@@ -34,4 +34,5 @@ export class Tetromino {
         }
         this.shape = rotatedShape;
     }
+
 }

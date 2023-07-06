@@ -426,6 +426,9 @@ export class TetrisComponent {
       let rowSumCurrent: number = this.tetrisField[currentIndex].reduce((a, b) => a + b, 0);
       let rowSumAbove: number = this.tetrisField[aboveIndex].reduce((a, b) => a + b, 0);
 
+      console.log("current index: " + currentIndex);
+      console.log("above index: " + aboveIndex);
+
 
       if (rowSumCurrent === 0 && rowSumAbove > 0) {
         this.tetrisField[currentIndex + fallTimes - 1] = this.tetrisField[aboveIndex];

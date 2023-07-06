@@ -1,5 +1,11 @@
 export type shapeName = 'I' | 'J' | 'L' | 'O' | 'S' | 'Z' | 'T';
 
+export enum TetrisMoves {
+    LEFT = 'left',
+    RIGHT = 'right',
+    DOWN = 'down',
+}
+
 export const TETROMINOS_DATA: { name: shapeName; shape: number[][]; blockNumber: number }[] = [
     {
       name: 'I',

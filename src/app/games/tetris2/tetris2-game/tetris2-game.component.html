@@ -1,11 +1,23 @@
 <div class="main-wrapper">
 
-    
-    <button (click)="start()">start</button>
+    <div>
+        <button (click)="start()">start</button>
+        <button (click)="pause()">pause</button>
+        <button (click)="reset()">reset</button>
+
+    </div>
 
     <button (click)="rotate()">rotate</button>
-    <button (click)="moveDown()">down</button>
+
+    <div>
+        <button (click)="move('left')">left</button>
+        <button (click)="move('down')">down</button>
+        <button (click)="move('right')">right</button>
+    </div>
+
     <button (click)="lock()">lock</button>
+    <button (click)="clear()">clear</button>
+
 
 
     <!-- 'I' | 'J' | 'L' | 'O' | 'S' | 'Z' | 'T'; -->
@@ -21,9 +33,7 @@
 
     <div class="tetris-container">
         <div *ngFor="let row of grid" class="tetris-row">
-            <div *ngFor="let cell of row" class="tetris-cell cell-{{cell.value}}" >
-                {{cell.value}}
-
+            <div *ngFor="let cell of row" class="tetris-cell cell-{{cell.value}}" [ngClass]="{'current': !cell.placed && cell.value > 0, 'placed': cell.placed}" >
             </div>
         </div>
     </div>

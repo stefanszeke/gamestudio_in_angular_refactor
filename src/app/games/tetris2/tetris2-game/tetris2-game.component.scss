@@ -9,21 +9,24 @@
 }
 
 .tetris-cell {
+  position: relative;
   width: 30px;
   height: 30px;
-  border: 1px solid rgb(85, 85, 85);
+  border: 1px solid rgb(58, 58, 58);
+  border-radius: 4px;
 }
+
 .cell-1 {
-  background-color: #ef862a;
+  background-color: #35a1e5;
 }
 .cell-2 {
-  background-color: #488ef0;
+  background-color: #269146;
 }
 .cell-3 {
   background-color: #ff423e;
 }
 .cell-4 {
-  background-color: #f8ff37;
+  background-color: #ffc637;
 }
 .cell-5 {
   background-color: #d42d91;
@@ -33,6 +36,40 @@
 }
 .cell-7 {
   background-color: #40c292;
+}
+
+.current {
+  border: 4px solid white;
+}
+
+.placed {
+  border: none;
+  border-bottom: 3px solid rgba(115, 189, 101, 0.379);
+  border-left: 3px solid rgba(199, 129, 129, 0.466);
+  
+}
+
+
+.current::before, .placed::before {
+  content: "";
+  display: block;
+  width: 50%;
+  height: 50%;
+  border-radius: 4px;
+  background-color: rgba(255, 255, 255, 0.088);
+}
+
+.current::after, .placed::after {
+  content: "";
+  position: absolute;
+  width: 70%;
+  height: 70%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  // background-color: rgba(255, 255, 255, 0.174);
+  border: 3px solid rgba(250, 250, 250, 0.147);
 }
 
 .test-btns button {

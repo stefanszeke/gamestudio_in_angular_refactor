@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Tetromino } from '../tetris2-model/Tetromino';
 import { Tetris2Service } from '../tetris2-service/tetris2.service';
-import { shapeName } from '../tetris2-model/TetrominosShapes';
+import { TetrisMoves, shapeName } from '../tetris2-model/TetrominosShapes';
 
 @Component({
   selector: 'app-Tetris2-game',
@@ -14,7 +14,7 @@ export class Tetris2GameComponent {
   constructor(private tetris2Service: Tetris2Service) { }
 
   ngOnInit(): void {
-    this.tetris2Service.spawnNewRandomTetromino();
+
   }
 
   rotate() {
@@ -25,17 +25,33 @@ export class Tetris2GameComponent {
     this.tetris2Service.choseAndPlaceTetromino(shapeName);
   }
 
-  moveDown() {
-    this.tetris2Service.moveCurrentTetrominoDown();
+  move(direction: string) {
+    switch (direction) {
+      case 'left': { this.tetris2Service.moveCurrentTetromino(TetrisMoves.LEFT); break; }
+      case 'right': { this.tetris2Service.moveCurrentTetromino(TetrisMoves.RIGHT); break; }
+      case 'down': { this.tetris2Service.moveCurrentTetromino(TetrisMoves.DOWN); break; }
+    }
   }
 
   lock() {
     this.tetris2Service.placeCurrentTetromino();
     this.tetris2Service.spawnNewRandomTetromino();
   }
-  
+
+  clear() {
+    this.tetris2Service.checkCompletedRowsAndClear();
+  }
+
   start() {
     this.tetris2Service.startMainGameLoop();
+  }
+
+  pause() {
+    this.tetris2Service.pauseOrResumeGame();
+  }
+
+  reset() {
+    this.tetris2Service.resetGame();
   }
 
 
