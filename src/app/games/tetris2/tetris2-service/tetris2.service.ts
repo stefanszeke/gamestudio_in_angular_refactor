@@ -67,6 +67,9 @@ export class Tetris2Service {
     return this.TetrominoQueue;
   }
 
+  getTetrominoNumber(name: shapeName): number {
+    return TETROMINOS_DATA.find(tetromino => tetromino.name === name)!.blockNumber
+  }
 
 
   generateGrid(): void {
@@ -357,6 +360,7 @@ export class Tetris2Service {
     this.gamePaused = true;
     this.gameLoopSubscription?.unsubscribe();
     this.gameLoop$ = new Subject<void>();
+    this.TetrominoQueue = [];
     this.resetGrid();
   }
 

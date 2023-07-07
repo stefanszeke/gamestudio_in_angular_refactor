@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Tetromino } from '../tetris2-model/Tetromino';
 import { Tetris2Service } from '../tetris2-service/tetris2.service';
 import { TetrisMoves, shapeName } from '../tetris2-model/TetrominosShapes';
@@ -58,5 +58,39 @@ export class Tetris2GameComponent {
     return this.tetris2Service.getTetrominoQueue();
   }
 
+  getTetrominoNumber(name: shapeName): number {
+    return this.tetris2Service.getTetrominoNumber(name);
+  }
+
+  getQueueCellClass(name: shapeName, cell: number) {
+    if(cell > 0) {
+      let cellNumber = this.tetris2Service.getTetrominoNumber(name);
+      return `cell-${cellNumber}`;
+    }
+    return '';
+  }
+
+
+  @HostListener('window:keydown', ['$event'])
+  handleKeyDown(event: KeyboardEvent) {
+
+    switch (event.key) {
+      case 'ArrowRight':
+      case 'd':
+        this.move('right');
+        break;
+      case 'ArrowLeft':
+      case 'a':
+        this.move('left');
+        break;
+      case 'ArrowDown':
+      case 's':
+        this.move('down');
+        break;
+      case 'ArrowUp':
+      case 'w':
+        this.rotate();
+    }
+  }
 
 }

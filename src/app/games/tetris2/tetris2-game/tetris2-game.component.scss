@@ -16,6 +16,8 @@
   border-radius: 4px;
 }
 
+
+
 .cell-1 {
   background-color: #35a1e5;
 }
@@ -77,12 +79,44 @@
   font-family: "Courier New", Courier, monospace;
 }
 
+.queue-cell {
+  width: 15px;
+  height: 15px;
+  border-radius: 2px;
+}
+
 .queue {
   display: grid;
   grid-auto-flow: column;
+  place-items: center;
   color: white;
   font-size: 2rem;
   font-family: "Courier New", Courier, monospace;
   padding: 5px;
-  border: 1px solid orange;
+  gap: 10px;
+  height: 120px;
+  width: 300px;
+  border: 1px dotted white;
+  user-select: none;
+
+  &-item {
+    width: 70px;
+    height: 70px;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-auto-flow: column;
+    border: 1px dotted orange;
+    transition: 200ms;
+    &:first-child {
+      border: 3px solid orange;
+      transform: scale(1.2);
+    }
+    &:last-child {
+      border: 1px dotted orange;
+      transform: scale(0.8);
+    }
+  }
+
+
 }

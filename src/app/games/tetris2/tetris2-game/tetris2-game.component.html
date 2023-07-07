@@ -32,8 +32,13 @@
     </div>
 
     <div class="queue">
-        <div *ngFor="let tetromino of getQueue()" class="row">
-            {{ tetromino.name }}
+        <div *ngFor="let tetromino of getQueue()"  class="queue-item">
+            <div *ngFor="let row of tetromino.shape">
+                    <div *ngFor="let cell of row" class="queue-cell " [ngClass]="getQueueCellClass(tetromino.name, cell)">
+                        <div >
+                        </div>
+                    </div>  
+            </div>
         </div>
     </div>
 
