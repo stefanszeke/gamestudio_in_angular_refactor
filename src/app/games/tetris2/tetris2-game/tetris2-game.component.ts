@@ -54,6 +54,14 @@ export class Tetris2GameComponent {
     this.tetris2Service.resetGame();
   }
 
+  getPaused(): boolean {
+    return this.tetris2Service.getPaused();
+  }
+
+  getPausedText(): string {
+    return this.getPaused() ? 'play_arrow' : 'pause';
+  }
+
   getQueue(): Tetromino[] {
     return this.tetris2Service.getTetrominoQueue();
   }

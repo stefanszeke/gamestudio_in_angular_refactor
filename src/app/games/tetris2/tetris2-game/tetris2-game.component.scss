@@ -1,8 +1,11 @@
+@use "src/styles/statusbox";
+
 .tetris-container {
   display: flex;
   flex-direction: column;
   user-select: none;
 }
+
 
 .tetris-row {
   display: flex;
@@ -86,18 +89,11 @@
 }
 
 .queue {
-  display: grid;
-  grid-auto-flow: column;
-  place-items: center;
-  color: white;
-  font-size: 2rem;
-  font-family: "Courier New", Courier, monospace;
+  justify-content: center;
   padding: 5px;
-  gap: 10px;
+  gap: 22px;
   height: 120px;
-  width: 300px;
-  border: 1px dotted white;
-  user-select: none;
+  min-width: 300px;
 
   &-row {
     display: flex;
@@ -121,6 +117,12 @@
       transform: scale(0.8);
     }
   }
+}
 
 
+@media (max-width: 728px) {
+  .queue {
+    grid-auto-flow: column;
+    gap: 22px;
+  }
 }

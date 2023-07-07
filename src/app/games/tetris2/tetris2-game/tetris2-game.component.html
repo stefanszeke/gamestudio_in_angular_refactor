@@ -1,37 +1,41 @@
 <div class="main-wrapper">
 
-    <div>
-        <button (click)="start()">start</button>
-        <button (click)="pause()">pause</button>
-        <button (click)="reset()">reset</button>
+    <div class="box">
+        <div>
+            <button class="btn-field" (click)="start()">start</button>
+            <button class="btn-field" (click)="pause()" [ngClass]="{'btn-pressed': getPaused()}"><i class="material-icons">{{getPausedText()}}</i></button>
+            <button class="btn-field" (click)="reset()">reset</button>
+        </div>
+    
+        <button (click)="rotate()">rotate</button>
+    
+        <div>
+            <button (click)="move('left')">left</button>
+            <button (click)="move('down')">down</button>
+            <button (click)="move('right')">right</button>
+        </div>
+    
+        <button (click)="lock()">lock</button>
+        <button (click)="clear()">clear</button>
 
+        <div class="test-btns">
+            <button (click)="replaceCurrentTetromino('I')">I</button>
+            <button (click)="replaceCurrentTetromino('J')">J</button>
+            <button (click)="replaceCurrentTetromino('L')">L</button>
+            <button (click)="replaceCurrentTetromino('O')">O</button>
+            <button (click)="replaceCurrentTetromino('S')">S</button>
+            <button (click)="replaceCurrentTetromino('Z')">Z</button>
+            <button (click)="replaceCurrentTetromino('T')">T</button>
+        </div>
     </div>
 
-    <button (click)="rotate()">rotate</button>
-
-    <div>
-        <button (click)="move('left')">left</button>
-        <button (click)="move('down')">down</button>
-        <button (click)="move('right')">right</button>
-    </div>
-
-    <button (click)="lock()">lock</button>
-    <button (click)="clear()">clear</button>
 
 
 
     <!-- 'I' | 'J' | 'L' | 'O' | 'S' | 'Z' | 'T'; -->
-    <div class="test-btns">
-        <button (click)="replaceCurrentTetromino('I')">I</button>
-        <button (click)="replaceCurrentTetromino('J')">J</button>
-        <button (click)="replaceCurrentTetromino('L')">L</button>
-        <button (click)="replaceCurrentTetromino('O')">O</button>
-        <button (click)="replaceCurrentTetromino('S')">S</button>
-        <button (click)="replaceCurrentTetromino('Z')">Z</button>
-        <button (click)="replaceCurrentTetromino('T')">T</button>
-    </div>
 
-    <div class="queue">
+
+    <div class="box queue">
         <div *ngFor="let tetromino of getQueue()" class="queue-item">
             <div *ngFor="let row of tetromino.shape" class="queue-row">
                 <div *ngFor="let cell of row" class="queue-cell " [ngClass]="getQueueCellClass(tetromino.name, cell)">

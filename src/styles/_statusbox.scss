@@ -41,6 +41,10 @@
     border-radius: 4px;
     padding: 2px;
   }
+
+  // .material-icons {
+  //   font-size: 1rem;
+  // }
 }
 
 
@@ -60,12 +64,18 @@
   width: fit-content;
   color: v.$text-main;
   transition: 90ms;
+  user-select: none;  
 
   &:hover {
     filter: brightness(1.2);
     transform: scale(1.2);
     cursor: pointer;
   }
+}
+
+.btn-pressed {
+  filter: brightness(1.2);
+  transform: scale(1.2);
 }
 
 @media (max-width: 728px) {

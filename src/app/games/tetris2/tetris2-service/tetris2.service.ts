@@ -71,6 +71,10 @@ export class Tetris2Service {
     return TETROMINOS_DATA.find(tetromino => tetromino.name === name)!.blockNumber
   }
 
+  getPaused(): boolean {
+    return this.gamePaused;
+  }
+
 
   generateGrid(): void {
     this.grid = [];
@@ -118,6 +122,7 @@ export class Tetris2Service {
   }
 
   moveCurrentTetromino(direction: TetrisMoves): void {
+    if(this.gameOver) return;
     if (this.canMove(direction)) {
       this.clearCurrentTetromino();
       switch (direction) {
@@ -320,12 +325,9 @@ export class Tetris2Service {
         console.log("falling")
         for (let i = lastRow; i > 0 - 1; i--) {
           if(this.grid[i].some(block => block.placed)) {
-            this.grid[lastRow].forEach((block, index) => {
-              block.placed = this.grid[i][index].placed;
-              block.value = this.grid[i][index].value;
-            });
-            this.grid[i] = this.grid[i].map(block => { return { ...block, placed: false, value: 0 } })
+            this.grid[lastRow] = this.grid[i].map(block => ({ ...block, placed: block.placed, value: block.value }));
 
+            this.grid[i] = this.grid[i].map(block => ({ ...block, placed: false, value: 0 }));
             lastRow--;
           }
         }
