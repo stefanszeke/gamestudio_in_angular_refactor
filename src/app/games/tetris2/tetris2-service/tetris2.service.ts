@@ -10,6 +10,7 @@ import { Subject, Subscription, delay, interval, switchMap, takeWhile, tap } fro
 export class Tetris2Service {
   grid!: { value: number, placed: boolean }[][];
   currentTetromino!: Tetromino;
+  TetrominoQueue!: Tetromino[];
 
   gameLoop$: Subject<void>;
   gameLoopSubscription: Subscription | null = null;
@@ -29,12 +30,44 @@ export class Tetris2Service {
     this.currentPosition = { x: this.DEFAULT_X_POSITION, y: this.DEFAULT_Y_POSITION };
     this.generateGrid();
     this.debug();
+    this.TetrominoQueue = [];
     this.gameLoop$ = new Subject<void>();
+  }
+
+  startGame(): void {
+    this.addRandomTetrominoToQueue();
+    this.addRandomTetrominoToQueue();
+    this.addRandomTetrominoToQueue();
   }
 
   setRandomTetromino(): void {
     this.currentTetromino = this.getRandomTetromino();
   }
+
+  setTetrominoFromQueue(): void {
+    this.currentTetromino = this.getTetrominoFromQueue();
+  }
+
+  getTetrominoFromQueue(): Tetromino {
+    return this.TetrominoQueue.shift()!;
+  }
+
+  addRandomTetrominoToQueue(): void {
+    this.TetrominoQueue.push(this.getRandomTetromino());
+  }
+
+  spawnNewTetrominoFromQueue(): void {
+    this.setTetrominoFromQueue();
+    this.resetPosition();
+    this.refreshCurrentTetromino();
+    this.addRandomTetrominoToQueue();
+  }
+
+  getTetrominoQueue(): Tetromino[] {
+    return this.TetrominoQueue;
+  }
+
+
 
   generateGrid(): void {
     this.grid = [];
@@ -77,7 +110,7 @@ export class Tetris2Service {
   refreshPlaceAndSpawnNew(): void {
     this.refreshCurrentTetromino
     this.placeCurrentTetromino();
-    this.spawnNewRandomTetromino();
+    this.spawnNewTetrominoFromQueue();
 
   }
 
@@ -279,7 +312,9 @@ export class Tetris2Service {
       return;
     }
 
-    this.spawnNewRandomTetromino();
+    this.startGame();
+    console.log(this.TetrominoQueue)
+    this.spawnNewTetrominoFromQueue();
 
     this.gameStarted = true;
     this.gamePaused = false;

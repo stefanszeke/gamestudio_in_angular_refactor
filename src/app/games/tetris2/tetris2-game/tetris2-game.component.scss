@@ -76,3 +76,13 @@
   font-size: 2rem;
   font-family: "Courier New", Courier, monospace;
 }
+
+.queue {
+  display: grid;
+  grid-auto-flow: column;
+  color: white;
+  font-size: 2rem;
+  font-family: "Courier New", Courier, monospace;
+  padding: 5px;
+  border: 1px solid orange;
+}

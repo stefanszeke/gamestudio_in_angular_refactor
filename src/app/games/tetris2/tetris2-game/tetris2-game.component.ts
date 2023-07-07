@@ -54,5 +54,9 @@ export class Tetris2GameComponent {
     this.tetris2Service.resetGame();
   }
 
+  getQueue(): Tetromino[] {
+    return this.tetris2Service.getTetrominoQueue();
+  }
+
 
 }

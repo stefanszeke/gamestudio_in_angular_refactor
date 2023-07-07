@@ -31,6 +31,12 @@
         <button (click)="replaceCurrentTetromino('T')">T</button>
     </div>
 
+    <div class="queue">
+        <div *ngFor="let tetromino of getQueue()" class="row">
+            {{ tetromino.name }}
+        </div>
+    </div>
+
     <div class="tetris-container">
         <div *ngFor="let row of grid" class="tetris-row">
             <div *ngFor="let cell of row" class="tetris-cell cell-{{cell.value}}" [ngClass]="{'current': !cell.placed && cell.value > 0, 'placed': cell.placed}" >
