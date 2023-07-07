@@ -235,7 +235,7 @@ export class Tetris2Service {
     })
   }
 
-  async checkCompletedRowsAndClear(): Promise<number> {
+  async checkCompletedRowsAndClear3(): Promise<number> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         let clearedRows = 0;
@@ -262,7 +262,7 @@ export class Tetris2Service {
     })
   }
 
-  async fallRows(fallTimes: number): Promise<void> {
+  async fallRows3(fallTimes: number): Promise<void> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         console.log("falling")
@@ -288,6 +288,51 @@ export class Tetris2Service {
     })
   }
 
+  async checkCompletedRowsAndClear(): Promise<number> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        let lastRow = -1;
+        for (let i = 0; i < this.grid.length; i++) {
+
+          let rowIndex = this.grid.length - 1 - i;
+
+
+          let rowFull: boolean = this.grid[rowIndex].every(block => block.placed);
+          let rowEmpty: boolean = this.grid[rowIndex].every(block => !block.placed);
+          console.log(`row ${rowIndex} full: ${rowFull} empty: ${rowEmpty}`)
+
+          if (rowFull) {
+            this.grid[rowIndex].map(block => { block.placed = false; block.value = 0 });
+            if(lastRow === -1)  lastRow = rowIndex;
+          }
+
+          if (rowEmpty) {
+            break;
+          }
+        }
+        resolve(lastRow!);
+      }, 100)
+    })
+  }
+  async fallRows(lastRow: number): Promise<void> {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log("falling")
+        for (let i = lastRow; i > 0 - 1; i--) {
+          if(this.grid[i].some(block => block.placed)) {
+            this.grid[lastRow].forEach((block, index) => {
+              block.placed = this.grid[i][index].placed;
+              block.value = this.grid[i][index].value;
+            });
+            this.grid[i] = this.grid[i].map(block => { block.placed = false; block.value = 0; return block });
+            lastRow--;
+          }
+        }
+      }, 100)
+      resolve();
+    })
+  }
+
   debug() {
     for (let i = 0; i < 9; i++) {
       this.grid[19][i].placed = true;
@@ -299,6 +344,14 @@ export class Tetris2Service {
       this.grid[16][i].placed = true;
       this.grid[16][i].value = 1;
     }
+
+    this.grid[15][1].placed = true;
+    this.grid[15][1].value = 1;
+    this.grid[17][1].placed = false;
+    this.grid[17][1].value = 0;
+
+    this.grid[19][1].placed = false;
+    this.grid[19][1].value = 0;
   }
 
   resetPosition(): void {
@@ -308,7 +361,7 @@ export class Tetris2Service {
     }
   }
 
-  
+
 
   startMainGameLoop(): void {
     if (this.gameStarted) {
@@ -334,11 +387,11 @@ export class Tetris2Service {
         if (this.canMove(TetrisMoves.DOWN)) {
           this.moveCurrentTetromino(TetrisMoves.DOWN)
         } else {
-          console.log("refreshPlaceAndSpawnNew")
+
           this.refreshPlaceAndSpawnNew()
-          
+
           const clearedRows = await this.checkCompletedRowsAndClear();
-          if(clearedRows > 0) await this.fallRows(clearedRows);
+          if (clearedRows > 0) await this.fallRows(clearedRows);
 
         }
       });
@@ -368,7 +421,24 @@ export class Tetris2Service {
     this.gameLoopSubscription?.unsubscribe();
   }
 
-
-
-
 }
+
+
+// 0000 - 0000 - 0000 - 0000
+// 0000 - 0000 - 0000 - 0000
+// 0000 - 0000 - 0000 - 0000
+// 0010 - 0010 - 0000 - 0000  
+// 1111 - 0000 - 0010 - 0000
+// 0001 - 0001 - 0000 - 0010
+// 1111 - 0000 - 0001 - 0001
+// 1110 - 1110 - 1110 - 1110
+
+// 0000 - 0000 - 0000 - 0000
+// 0022 - 0022 - 0022 - 0022
+// 0022 - 0022 - 0022 - 0022
+// 1111 - 0000 - 0000 - 0000
+// 0022 - 0022 - 0022 - 0000
+// 0022 - 0022 - 0000 - 0000
+// 1111 - 0000 - 0000 - 0022
+// 1111 - 0000 - 0022 - 0022
+// 0022 - 0022 - 0022 - 0022
