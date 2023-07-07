@@ -324,7 +324,8 @@ export class Tetris2Service {
               block.placed = this.grid[i][index].placed;
               block.value = this.grid[i][index].value;
             });
-            this.grid[i] = this.grid[i].map(block => { block.placed = false; block.value = 0; return block });
+            this.grid[i] = this.grid[i].map(block => { return { ...block, placed: false, value: 0 } })
+
             lastRow--;
           }
         }

@@ -32,19 +32,18 @@
     </div>
 
     <div class="queue">
-        <div *ngFor="let tetromino of getQueue()"  class="queue-item">
-            <div *ngFor="let row of tetromino.shape">
-                    <div *ngFor="let cell of row" class="queue-cell " [ngClass]="getQueueCellClass(tetromino.name, cell)">
-                        <div >
-                        </div>
-                    </div>  
+        <div *ngFor="let tetromino of getQueue()" class="queue-item">
+            <div *ngFor="let row of tetromino.shape" class="queue-row">
+                <div *ngFor="let cell of row" class="queue-cell " [ngClass]="getQueueCellClass(tetromino.name, cell)">
+                </div>
             </div>
         </div>
     </div>
 
     <div class="tetris-container">
         <div *ngFor="let row of grid" class="tetris-row">
-            <div *ngFor="let cell of row" class="tetris-cell cell-{{cell.value}}" [ngClass]="{'current': !cell.placed && cell.value > 0, 'placed': cell.placed}" >
+            <div *ngFor="let cell of row" class="tetris-cell cell-{{cell.value}}"
+                [ngClass]="{'current': !cell.placed && cell.value > 0, 'placed': cell.placed}">
             </div>
         </div>
     </div>

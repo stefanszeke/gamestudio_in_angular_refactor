@@ -99,13 +99,17 @@
   border: 1px dotted white;
   user-select: none;
 
+  &-row {
+    display: flex;
+  }
+
   &-item {
     width: 70px;
     height: 70px;
     justify-content: center;
-    align-items: center;
+    align-content: center;
     display: grid;
-    grid-auto-flow: column;
+    // grid-auto-flow: column;
     border: 1px dotted orange;
     transition: 200ms;
     &:first-child {
