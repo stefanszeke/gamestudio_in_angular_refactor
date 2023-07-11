@@ -1,7 +1,7 @@
 <div class="main-wrapper">
 
     <div class="box">
-        <div>
+        <div class="box-row">
             <button class="btn-field" (click)="start()">start</button>
             <button class="btn-field" (click)="pause()" [ngClass]="{'btn-pressed': getPaused()}"><i class="material-icons">{{getPausedText()}}</i></button>
             <button class="btn-field" (click)="reset()">reset</button>

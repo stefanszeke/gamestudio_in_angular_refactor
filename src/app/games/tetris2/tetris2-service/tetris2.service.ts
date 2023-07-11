@@ -177,9 +177,11 @@ export class Tetris2Service {
   }
 
   rotateCurrentTetromino(): void {
-    let rotatedTetromino = new Tetromino(this.currentTetromino.name);
+    let rotatedTetromino = new Tetromino(this.currentTetromino.name, this.currentTetromino.IRotated);
     rotatedTetromino.shape = this.currentTetromino.shape;
     rotatedTetromino.rotate();
+    console.log(rotatedTetromino.shape)
+    console.log(this.currentPosition)
 
     if (!this.isCollision(rotatedTetromino)) {
       this.clearCurrentTetromino();
@@ -190,10 +192,12 @@ export class Tetris2Service {
   }
 
   isCollision(tetromino: Tetromino): boolean {
-    // console.log(tetromino)
+    console.log("is collision:", tetromino)
     for (let y = 0; y < tetromino.shape.length; y++) {
       for (let x = 0; x < tetromino.shape[y].length; x++) {
         if (tetromino.shape[y][x] !== 0) {
+
+          console.log("x:", this.currentPosition.x + x, "y:", this.currentPosition.y + y)
 
           if (this.currentPosition.x + x < 0 || this.currentPosition.x + x > 9) {
             return true;
@@ -300,7 +304,6 @@ export class Tetris2Service {
         for (let i = 0; i < this.grid.length; i++) {
 
           let rowIndex = this.grid.length - 1 - i;
-
 
           let rowFull: boolean = this.grid[rowIndex].every(block => block.placed);
           let rowEmpty: boolean = this.grid[rowIndex].every(block => !block.placed);

@@ -3,11 +3,12 @@ import { TETROMINOS_DATA, shapeName } from "./TetrominosShapes";
 export class Tetromino {
     shape: number[][];
     name: shapeName;
-    IRotated: boolean = false;
+    IRotated: boolean;
 
-    constructor(name: shapeName) {
+    constructor(name: shapeName, IRotated: boolean = false) {
         this.name = name
         this.shape = TETROMINOS_DATA.find(tetromino => tetromino.name === name)!.shape;
+        this.IRotated = IRotated;
     }
 
     rotate() {

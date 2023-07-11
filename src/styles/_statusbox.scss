@@ -33,6 +33,13 @@
     align-items: center;
   }
 
+  &-row {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    gap: 4px;
+  }
+
   &-numb {
     text-align: right;
     color: white;
