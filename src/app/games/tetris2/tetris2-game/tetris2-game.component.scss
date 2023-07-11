@@ -1,9 +1,26 @@
 @use "src/styles/statusbox";
 
 .tetris-container {
+  position: relative;
   display: flex;
   flex-direction: column;
   user-select: none;
+}
+
+.multiplier {
+  z-index: 10;
+  position: absolute;
+  color: hotpink;
+  top: 5px;
+  right: 5px;
+  display: grid;
+  justify-items: center;
+  align-content: center;
+  width: 80px;
+  height: 80px;
+  border: 3px solid hotpink;
+  border-radius: 6px;
+  opacity: 0.5;
 }
 
 
@@ -119,6 +136,23 @@
   }
 }
 
+.score {
+  justify-content: center;
+}
+.status-item {
+  grid-template-columns: 1fr 130px;
+}
+.box-numb {
+  position: relative;
+  h2{
+    position: absolute;
+    top: 50%;
+    left: 105%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    font-family: "Courier New", Courier, monospace;
+  }
+}
 
 @media (max-width: 728px) {
   .queue {

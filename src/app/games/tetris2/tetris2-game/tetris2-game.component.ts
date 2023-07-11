@@ -78,6 +78,16 @@ export class Tetris2GameComponent {
     return '';
   }
 
+  getScore(): number {
+    return this.tetris2Service.score;
+  }
+  getScoreMultiplier(): number {
+    return this.tetris2Service.scoreMultiplier;
+  }
+  getLastScore(): number {
+    return this.tetris2Service.lastScore;
+  }
+
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {

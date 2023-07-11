@@ -24,6 +24,10 @@ export class Tetris2Service {
 
   gameSpeed: number = 200;
 
+  score: number = 0;
+  scoreMultiplier: number = 1;
+  lastScore: number = 0;
+
   currentPosition: { x: number, y: number };
 
   constructor() {
@@ -78,7 +82,6 @@ export class Tetris2Service {
 
   generateGrid(): void {
     this.grid = [];
-    console.log(this.grid)
     for (let i = 0; i < 20; i++) {
       this.grid.push([]);
       for (let j = 0; j < 10; j++) {
@@ -180,8 +183,6 @@ export class Tetris2Service {
     let rotatedTetromino = new Tetromino(this.currentTetromino.name, this.currentTetromino.IRotated);
     rotatedTetromino.shape = this.currentTetromino.shape;
     rotatedTetromino.rotate();
-    console.log(rotatedTetromino.shape)
-    console.log(this.currentPosition)
 
     if (!this.isCollision(rotatedTetromino)) {
       this.clearCurrentTetromino();
@@ -192,13 +193,9 @@ export class Tetris2Service {
   }
 
   isCollision(tetromino: Tetromino): boolean {
-    console.log("is collision:", tetromino)
     for (let y = 0; y < tetromino.shape.length; y++) {
       for (let x = 0; x < tetromino.shape[y].length; x++) {
         if (tetromino.shape[y][x] !== 0) {
-
-          console.log("x:", this.currentPosition.x + x, "y:", this.currentPosition.y + y)
-
           if (this.currentPosition.x + x < 0 || this.currentPosition.x + x > 9) {
             return true;
           }
@@ -255,7 +252,6 @@ export class Tetris2Service {
 
           let rowFull: boolean = this.grid[rowIndex].every(block => block.placed);
           let rowEmpty: boolean = this.grid[rowIndex].every(block => !block.placed);
-          console.log(`row ${rowIndex} full: ${rowFull} empty: ${rowEmpty}`)
 
           if (rowFull) {
             this.grid[rowIndex].map(block => { block.placed = false; block.value = 0 });
@@ -274,7 +270,6 @@ export class Tetris2Service {
   async fallRows3(fallTimes: number): Promise<void> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        console.log("falling")
         for (let i = 0; i < this.grid.length - 1; i++) {
 
           let currentIndex = this.grid.length - 1 - i;
@@ -301,23 +296,30 @@ export class Tetris2Service {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
         let lastRow = -1;
+        let rowsCleared = 0;
         for (let i = 0; i < this.grid.length; i++) {
 
           let rowIndex = this.grid.length - 1 - i;
 
           let rowFull: boolean = this.grid[rowIndex].every(block => block.placed);
           let rowEmpty: boolean = this.grid[rowIndex].every(block => !block.placed);
-          console.log(`row ${rowIndex} full: ${rowFull} empty: ${rowEmpty}`)
 
           if (rowFull) {
             this.grid[rowIndex].map(block => { block.placed = false; block.value = 0 });
             if(lastRow === -1)  lastRow = rowIndex;
+            rowsCleared++;
           }
 
           if (rowEmpty) {
             break;
           }
+
         }
+        const scoreToAdd = (rowsCleared * rowsCleared) * this.scoreMultiplier * 10;
+        this.score += scoreToAdd;
+        this.lastScore = scoreToAdd;
+        console.log("score+: ",scoreToAdd)
+        this.scoreMultiplier = rowsCleared === 0 ? 1 : this.scoreMultiplier+1;
         resolve(lastRow!);
       }, 100)
     })
@@ -325,7 +327,6 @@ export class Tetris2Service {
   async fallRows(lastRow: number): Promise<void> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
-        console.log("falling")
         for (let i = lastRow; i > 0 - 1; i--) {
           if(this.grid[i].some(block => block.placed)) {
             this.grid[lastRow] = this.grid[i].map(block => ({ ...block, placed: block.placed, value: block.value }));
@@ -420,6 +421,9 @@ export class Tetris2Service {
     this.gameLoopSubscription?.unsubscribe();
     this.gameLoop$ = new Subject<void>();
     this.TetrominoQueue = [];
+    this.score = 0;
+    this.scoreMultiplier = 1;
+    this.lastScore = 0;
     this.resetGrid();
   }
 
@@ -448,3 +452,9 @@ export class Tetris2Service {
 // 1111 - 0000 - 0000 - 0022
 // 1111 - 0000 - 0022 - 0022
 // 0022 - 0022 - 0022 - 0022
+
+
+// 10**2 = 100
+// 20**2 = 400
+// 30**2 = 900
+// 40**2 = 1600
