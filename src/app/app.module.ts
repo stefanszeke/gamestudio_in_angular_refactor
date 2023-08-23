@@ -13,6 +13,7 @@ import { Game1024TileComponent } from './games/game1024/game1024-tile/game1024-t
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { TetrisComponent } from './games/tetris/tetris/tetris.component';
 import { Tetris2GameComponent } from './games/tetris2/tetris2-game/tetris2-game.component';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 
 @NgModule({
@@ -33,7 +34,9 @@ import { Tetris2GameComponent } from './games/tetris2/tetris2-game/tetris2-game.
     BrowserModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [
+    { provide: LocationStrategy, useClass: HashLocationStrategy }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
