@@ -87,7 +87,9 @@ export class Tetris2GameComponent {
   getLastScore(): number {
     return this.tetris2Service.lastScore;
   }
-
+  getDebugMode(): boolean {
+    return this.tetris2Service.debugMode;
+  }
 
   @HostListener('window:keydown', ['$event'])
   handleKeyDown(event: KeyboardEvent) {

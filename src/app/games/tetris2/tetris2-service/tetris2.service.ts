@@ -30,6 +30,8 @@ export class Tetris2Service {
 
   currentPosition: { x: number, y: number };
 
+  debugMode: boolean = false;
+
   constructor() {
     this.currentPosition = { x: this.DEFAULT_X_POSITION, y: this.DEFAULT_Y_POSITION };
     this.generateGrid();

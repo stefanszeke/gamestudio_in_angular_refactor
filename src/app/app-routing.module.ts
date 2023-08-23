@@ -21,11 +21,13 @@ const routes: Routes = [
   },
   {
     path: 'blocks',
-    loadChildren: () => loadWithDelay('blocks', 'BlocksModule', DELAY)
+    loadChildren: () => import('./games/blocks/blocks.module').then(m => m.BlocksModule)
+    // loadChildren: () => loadWithDelay('blocks', 'BlocksModule', DELAY)
   },
   {
     path: 'game1024',
-    loadChildren: () => loadWithDelay('game1024', 'Game1024Module', DELAY)
+    loadChildren: () => import('./games/game1024/game1024.module').then(m => m.Game1024Module)
+    // loadChildren: () => loadWithDelay('game1024', 'Game1024Module', DELAY)
   },
   {
     path: 'tetris',
