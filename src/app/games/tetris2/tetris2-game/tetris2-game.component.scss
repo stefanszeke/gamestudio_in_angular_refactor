@@ -159,4 +159,15 @@
     grid-auto-flow: column;
     gap: 22px;
   }
+  .box {
+    grid-auto-flow: column;
+    scale: 0.8;
+  }
+  .main-wrapper {
+    gap: 0;
+  }
+  .tetris-cell {
+    width: 20px;
+    height: 20px;
+  }
 }
