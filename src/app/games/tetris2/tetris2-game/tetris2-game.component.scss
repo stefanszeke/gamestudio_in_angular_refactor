@@ -23,6 +23,46 @@
   opacity: 0.5;
 }
 
+.rotate-button {
+  position: fixed;
+  width: 95%;
+  height: 140px;
+  bottom: 140px;
+  display: grid;
+  grid-template-columns: 1fr 20% 1fr;
+  gap: 20px;
+  opacity: 0.2;
+  display: none;
+}
+
+
+.control-buttons {
+  position: fixed;
+  width: 95%;
+  height: 90px;
+  bottom: 10px;
+  display: grid;
+  grid-template-columns: 1fr 20% 1fr;
+  gap: 20px;
+  opacity: 0.2;
+  display: none;
+}
+
+.control-buttons button , .rotate-button button {
+  background: none;
+  border: 2px solid gray;
+  border-radius: 8px;
+}
+
+.control-buttons button i, .rotate-button button i{
+  color: white;
+  font-size: 4rem;
+}
+
+.rotate-button button {
+  border-radius: 50%;
+  width: 140px;
+}
 
 .tetris-row {
   display: flex;
@@ -35,8 +75,6 @@
   border: 1px solid rgb(58, 58, 58);
   border-radius: 4px;
 }
-
-
 
 .cell-1 {
   background-color: #35a1e5;
@@ -68,11 +106,10 @@
   border: none;
   border-bottom: 3px solid rgba(115, 189, 101, 0.379);
   border-left: 3px solid rgba(199, 129, 129, 0.466);
-  
 }
 
-
-.current::before, .placed::before {
+.current::before,
+.placed::before {
   content: "";
   display: block;
   width: 50%;
@@ -81,7 +118,8 @@
   background-color: rgba(255, 255, 255, 0.088);
 }
 
-.current::after, .placed::after {
+.current::after,
+.placed::after {
   content: "";
   position: absolute;
   width: 70%;
@@ -144,7 +182,7 @@
 }
 .box-numb {
   position: relative;
-  h2{
+  h2 {
     position: absolute;
     top: 50%;
     left: 105%;
@@ -166,8 +204,14 @@
   .main-wrapper {
     gap: 0;
   }
+  .tetris-container {
+    margin-left: 20%;
+  }
   .tetris-cell {
     width: 20px;
     height: 20px;
+  }
+  .control-buttons, .rotate-button {
+    display: grid;
   }
 }

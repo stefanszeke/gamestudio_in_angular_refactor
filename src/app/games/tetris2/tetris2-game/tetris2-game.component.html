@@ -54,16 +54,28 @@
         </div>
     </div>
 
-    <div class="tetris-container">
-        <div *ngIf="getScoreMultiplier() > 1" class="multiplier">
-            <p>COMBO</p>
-            <h2>{{getScoreMultiplier()}}X</h2>
-        </div>
-        <div *ngFor="let row of grid" class="tetris-row">
-            <div *ngFor="let cell of row" class="tetris-cell cell-{{cell.value}}"
-                [ngClass]="{'current': !cell.placed && cell.value > 0, 'placed': cell.placed}">
-            </div>
-        </div>
+
+   <div class="tetris-container">
+       <div *ngIf="getScoreMultiplier() > 1" class="multiplier">
+           <p>COMBO</p>
+           <h2>{{getScoreMultiplier()}}X</h2>
+       </div>
+       <div *ngFor="let row of grid" class="tetris-row">
+           <div *ngFor="let cell of row" class="tetris-cell cell-{{cell.value}}"
+               [ngClass]="{'current': !cell.placed && cell.value > 0, 'placed': cell.placed}">
+           </div>
+       </div>
+   </div>
+
+   <div class="rotate-button">
+    <button  (click)="rotate()" ><i class="material-icons">rotate_90_degrees_cw</i></button>
+   </div>
+
+    <div class="control-buttons">
+        <button (click)="move('left')" ><i class="material-icons">keyboard_arrow_left</i></button>
+        <button (click)="move('down')" ><i class="material-icons">keyboard_arrow_right</i></button>
+        <button (click)="move('right')"><i class="material-icons">keyboard_arrow_down</i></button>
     </div>
+
 
 </div>
