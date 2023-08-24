@@ -15,14 +15,16 @@ export class Tetris2Service {
   gameLoop$: Subject<void>;
   gameLoopSubscription: Subscription | null = null;
 
-  gameStarted: boolean = false;
-  gamePaused: boolean = false;
-  gameOver: boolean = false;
+  private gameStarted: boolean = false;
+  private gamePaused: boolean = false;
+  private gameOver: boolean = false;
 
   private readonly DEFAULT_X_POSITION = 4;
   private readonly DEFAULT_Y_POSITION = 0;
 
-  gameSpeed: number = 200;
+  private gameSpeed: number = 400;
+  private readonly MAX_GAME_SPEED = 100;
+  private readonly MIN_GAME_SPEED = 1000;
 
   score: number = 0;
   scoreMultiplier: number = 1;
@@ -38,6 +40,26 @@ export class Tetris2Service {
     this.debug();
     this.TetrominoQueue = [];
     this.gameLoop$ = new Subject<void>();
+  }
+
+  getGameStarted(): boolean {
+    return this.gameStarted;
+  }
+
+  getGameSpeed(): number {
+    return this.gameSpeed;
+  }
+
+  public increaseGameSpeed(): void {
+    if (!this.gameStarted && this.gameSpeed > this.MAX_GAME_SPEED) {
+      this.gameSpeed -= 100;
+    }
+  }
+
+  public decreaseGameSpeed(): void {
+    if (!this.gameStarted && this.gameSpeed < this.MIN_GAME_SPEED) {
+      this.gameSpeed += 100;
+    }
   }
 
   startGame(): void {
@@ -419,7 +441,7 @@ export class Tetris2Service {
   resetGame(): void {
     this.gameStarted = false;
     this.gameOver = false;
-    this.gamePaused = true;
+    this.gamePaused = false;
     this.gameLoopSubscription?.unsubscribe();
     this.gameLoop$ = new Subject<void>();
     this.TetrominoQueue = [];

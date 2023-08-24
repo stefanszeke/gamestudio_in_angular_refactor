@@ -11,14 +11,36 @@ import { TetrisMoves, shapeName } from '../tetris2-model/TetrominosShapes';
 export class Tetris2GameComponent {
   public grid = this.tetris2Service.grid;
 
+  speedDisplay: string = "";
+
   constructor(private tetris2Service: Tetris2Service) { }
 
   ngOnInit(): void {
+    this.setSpeedDisplay();
+  }
 
+  isGameStarted(): boolean {
+    return this.tetris2Service.getGameStarted();
   }
 
   rotate() {
     this.tetris2Service.rotateCurrentTetromino();
+  }
+
+  addSpeed() {
+    this.tetris2Service.increaseGameSpeed();
+    this.setSpeedDisplay();
+  }
+
+  removeSpeed() {
+    this.tetris2Service.decreaseGameSpeed();
+    this.setSpeedDisplay();
+  }
+
+  setSpeedDisplay() {
+    let speedNumber: number = this.tetris2Service.getGameSpeed() / 100;
+    let speed = 11 - speedNumber;
+    this.speedDisplay = speed.toString().padStart(2, '0');
   }
 
   replaceCurrentTetromino(shapeName: shapeName) {
@@ -89,6 +111,11 @@ export class Tetris2GameComponent {
   }
   getDebugMode(): boolean {
     return this.tetris2Service.debugMode;
+  }
+
+  @HostListener('contextmenu', ['$event'])
+  onRightClick(event: MouseEvent) {
+    event.preventDefault();
   }
 
   @HostListener('window:keydown', ['$event'])

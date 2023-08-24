@@ -39,6 +39,11 @@
                 <h2 *ngIf="getLastScore() > 0">+{{getLastScore()}}</h2>
             </span>
         </div>
+        <div class="box-row">
+            <button [ngClass]="{'hidden': isGameStarted()}" class="btn-field" (click)="addSpeed()">+</button>
+            <button [ngClass]="{'hidden': isGameStarted()}" class="btn-field" (click)="removeSpeed()">-</button>
+            <span class="box-numb">speed: {{speedDisplay}}</span> 
+        </div>
     </div>
 
 
