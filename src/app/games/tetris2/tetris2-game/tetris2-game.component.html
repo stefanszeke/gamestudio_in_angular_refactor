@@ -67,8 +67,8 @@
             <h2>{{getScoreMultiplier()}}X</h2>
         </div>
         <div *ngFor="let row of grid" class="tetris-row">
-            <div *ngFor="let cell of row" class="tetris-cell cell-{{cell.value}}"
-                [ngClass]="{'current': !cell.placed && cell.value > 0, 'placed': cell.placed}">
+            <div *ngFor="let cell of row; let i = index" class="tetris-cell cell-{{cell.value}}"
+                [ngClass]="{'current': !cell.placed && cell.value > 0, 'placed': cell.placed, 'highLighted': isHighLighted(cell, i)}">
             </div>
         </div>
     </div>

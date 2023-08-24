@@ -51,7 +51,7 @@ export class Tetris2GameComponent {
     switch (direction) {
       case 'left': { this.tetris2Service.moveCurrentTetromino(TetrisMoves.LEFT); break; }
       case 'right': { this.tetris2Service.moveCurrentTetromino(TetrisMoves.RIGHT); break; }
-      case 'down': { this.tetris2Service.moveCurrentTetromino(TetrisMoves.DOWN); break; }
+      case 'down': { this.tetris2Service.hardDrop(); break; }
     }
   }
 
@@ -98,6 +98,11 @@ export class Tetris2GameComponent {
       return `cell-${cellNumber}`;
     }
     return '';
+  }
+
+  isHighLighted(cell: {value: number, placed: boolean}, column: number): boolean {
+    let columns: number[] = this.tetris2Service.getTetrominoColumns();
+    return !cell.placed && columns.includes(column) && cell.value == 0;
   }
 
   getScore(): number {

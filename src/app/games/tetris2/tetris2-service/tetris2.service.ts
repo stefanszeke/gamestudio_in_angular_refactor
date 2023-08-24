@@ -197,6 +197,30 @@ export class Tetris2Service {
     return canMove;
   }
 
+  getTetrominoColumns(): number[] {
+    let columns: number[] = [];
+
+    if(this.currentTetromino === undefined) return columns;
+    
+    let n = this.currentTetromino.shape.length;
+    let p = this.currentPosition.x;
+
+    for(let i = 0; i < n; i++) {
+      for(let j = 0; j < n; j++) {
+        if(this.currentTetromino.shape[i][j] !== 0) {
+          columns.push(p+j);
+        }
+      }
+    }
+    return columns
+  }
+
+  hardDrop(): void {
+    while (this.canMove(TetrisMoves.DOWN)) {
+      this.moveCurrentTetromino(TetrisMoves.DOWN);
+    }
+  }
+
   spawnNewRandomTetromino(): void {
     this.setRandomTetromino();
     this.resetPosition();
@@ -436,6 +460,7 @@ export class Tetris2Service {
     if (!this.gamePaused) {
       this.gameLoop$.next();
     }
+    console.log("Rows:" + this.getTetrominoColumns());
   }
 
   resetGame(): void {

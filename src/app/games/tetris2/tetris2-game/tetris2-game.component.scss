@@ -127,6 +127,10 @@
   border-left: 3px solid rgba(199, 129, 129, 0.466);
 }
 
+.highLighted {
+  background-color: rgba(255, 255, 255, 0.042);
+}
+
 .current::before,
 .placed::before {
   content: "";
